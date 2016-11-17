@@ -35,8 +35,15 @@ namespace GameLibrary.ViewModel
         public GameViewModel()
         {
             GameListe = new Model.GameList();
+            AddGameCommand = new RelayCommand(AddNewGame, null);
         }
 
         public Model.Game NewGame { get; set; }
+            public RelayCommand AddGameCommand { get; set; }
+
+            public void AddNewGame()
+            {
+                GameListe.Add(NewGame);
+            }
     }
 }
