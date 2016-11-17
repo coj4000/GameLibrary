@@ -1,13 +1,23 @@
 ﻿<Page
-    x:Class="GameLibrary.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:GameLibrary"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:GameLibrary.ViewModel"
+    x:Class="GameLibrary.MainPage"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <ViewModel:GameViewModel/>
+    </Page.DataContext>
 
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView x:Name="listView" Margin="10,88,174,558" ItemsSource="{Binding GameListe}" SelectedItem="{Binding SelectedGame, Mode=TwoWay}"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="165,559,0,0" TextWrapping="Wrap" Text="{Binding SelectedGame}" VerticalAlignment="Top" Height="102" Width="416"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="731,525,0,0" TextWrapping="Wrap" Text="{Binding NewGame.title, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Title"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="851,525,0,0" TextWrapping="Wrap" Text="{Binding NewGame.price, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Price"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Margin="969,525,0,0" TextWrapping="Wrap" Text="{Binding NewGame.date, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Date"/>
+        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Margin="1095,525,0,0" TextWrapping="Wrap" Text="{Binding NewGame.comment, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Comment"/>
     </Grid>
 </Page>
