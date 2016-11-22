@@ -11,9 +11,9 @@ namespace GameLibrary.Model
     {
         public GameList() : base()
         {
-            this.Add(new Game() {title = "Counter Strike", price = 85.0, date = new DateTime(2012,8,21), comment = "Fast pased game 'competetive' 3/5"});
-            this.Add(new Game() {title = "The Witcher 3", price = 189.0, date = new DateTime(2015,5,19), comment = "Fun moster hunting RPG 5/5"});
-            this.Add(new Game() {title = "Fallout 4", price = 349.0, date = new DateTime(2015,11,10), comment = "Open world post apocalyptic RPG 4.5/5"});
+            this.Add(new Game() {title = "Counter Strike", price = 85.0, date = "21/08-2012", comment = "Fast pased game 'competetive' 3/5"});
+            this.Add(new Game() {title = "The Witcher 3", price = 189.0, date = "19/05-2015", comment = "Fun moster hunting RPG 5/5"});
+            this.Add(new Game() {title = "Fallout 4", price = 349.0, date = "10/11-2015", comment = "Open world post apocalyptic RPG 4.5/5"});
         }
     }
 }
