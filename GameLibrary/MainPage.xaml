@@ -22,5 +22,6 @@
         <Button x:Name="Add" Content="Add Game" HorizontalAlignment="Left" Margin="902,667,0,0" VerticalAlignment="Top" Command="{Binding AddGameCommand}"/>
         <Button x:Name="Delete" Content="Delete Game" HorizontalAlignment="Left" Margin="1013,667,0,0" VerticalAlignment="Top" Command="{Binding DeleteGameCommand, Mode=OneWay}"/>
         <Button x:Name="button" Content="Save" HorizontalAlignment="Left" Margin="1156,667,0,0" VerticalAlignment="Top" Command="{Binding SaveGameCommand}"/>
+        <Button x:Name="button1" Content="Hent Liste" HorizontalAlignment="Left" Margin="1230,667,0,0" VerticalAlignment="Top" Command="{Binding HentDataCommand}"/>
     </Grid>
 </Page>

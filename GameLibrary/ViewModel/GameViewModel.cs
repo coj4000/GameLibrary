@@ -50,7 +50,19 @@ namespace GameLibrary.ViewModel
             DeleteGameCommand = new DeleteGameCommand(DeleteGame);
             SaveGameCommand = new SaveGameCommand(GemDataTilDiskAsync);
 
+            HentDataCommand = new HentDataCommand(HentDataFraDiskAsync);
+
             localFolder = ApplicationData.Current.LocalFolder;
+        }
+
+        public async void HentDataFraDiskAsync()
+        {
+            this.GameListe.Clear();
+
+            StorageFile file = await localFolder.GetFileAsync(filnavn);
+            string jsonText = await FileIO.ReadTextAsync(file);
+
+            GameListe.indsætJson(jsonText);
         }
 
         public async void GemDataTilDiskAsync()
@@ -63,6 +75,7 @@ namespace GameLibrary.ViewModel
         public DeleteGameCommand DeleteGameCommand { get; set; }
         public Model.Game NewGame { get; set; }
         public SaveGameCommand SaveGameCommand { get; set; }
+        public HentDataCommand HentDataCommand { get; set; }
 
         private StorageFolder localFolder = null;
        
