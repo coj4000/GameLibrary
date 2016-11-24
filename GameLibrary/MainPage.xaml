@@ -21,5 +21,6 @@
         <TextBox x:Name="textBox3" HorizontalAlignment="Left" Margin="1036,521,0,0" TextWrapping="Wrap" Text="{Binding NewGame.comment, Mode=TwoWay}" VerticalAlignment="Top" PlaceholderText="Comment" Height="100" Width="120"/>
         <Button x:Name="Add" Content="Add Game" HorizontalAlignment="Left" Margin="902,667,0,0" VerticalAlignment="Top" Command="{Binding AddGameCommand}"/>
         <Button x:Name="Delete" Content="Delete Game" HorizontalAlignment="Left" Margin="1013,667,0,0" VerticalAlignment="Top" Command="{Binding DeleteGameCommand, Mode=OneWay}"/>
+        <Button x:Name="button" Content="Save" HorizontalAlignment="Left" Margin="1156,667,0,0" VerticalAlignment="Top" Command="{Binding SaveGameCommand}"/>
     </Grid>
 </Page>
