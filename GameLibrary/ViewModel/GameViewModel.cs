@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Popups;
+using GameLibrary.Model;
 using Newtonsoft.Json;
 
 namespace GameLibrary.ViewModel
@@ -16,6 +19,7 @@ namespace GameLibrary.ViewModel
         private Model.Game selectedGame;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -29,7 +33,7 @@ namespace GameLibrary.ViewModel
             get { return selectedGame; }
             set
             {
-                selectedGame = value; 
+                selectedGame = value;
                 OnPropertyChanged(nameof(SelectedGame));
             }
         }
@@ -41,6 +45,7 @@ namespace GameLibrary.ViewModel
         //}
 
         private readonly string filnavn = "JsonText.json";
+
         public GameViewModel()
         {
             GameListe = new Model.GameList();
@@ -49,20 +54,31 @@ namespace GameLibrary.ViewModel
             NewGame = new Model.Game();
             DeleteGameCommand = new DeleteGameCommand(DeleteGame);
             SaveGameCommand = new SaveGameCommand(GemDataTilDiskAsync);
-
             HentDataCommand = new HentDataCommand(HentDataFraDiskAsync);
+
+
 
             localFolder = ApplicationData.Current.LocalFolder;
         }
 
         public async void HentDataFraDiskAsync()
         {
-            this.GameListe.Clear();
+            try
+            {
+                StorageFile file = await localFolder.GetFileAsync(filnavn);
+                string jsonText = await FileIO.ReadTextAsync(file);
+                this.GameListe.Clear();
+                GameListe.indsætJson(jsonText);
+            }
+            catch (Exception)
+            {
 
-            StorageFile file = await localFolder.GetFileAsync(filnavn);
-            string jsonText = await FileIO.ReadTextAsync(file);
+               MessageDialog messageDialog = new MessageDialog("Ændret filnavn eller der er ikke gemt");
+                await messageDialog.ShowAsync();
+            }
+           
 
-            GameListe.indsætJson(jsonText);
+            
         }
 
         public async void GemDataTilDiskAsync()
